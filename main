@@ -1,0 +1,83 @@
+#include <iostream>
+
+class BasicShape {
+    protected:
+        double area;
+    public:
+        double getArea()
+        { return area; }
+        
+        virtual void calcArea() = 0;
+};
+
+class Circle : public BasicShape {
+    private:
+        double centerX;
+        double centerY;
+        double radius;
+    public:
+        Circle(double x, double y, double r)
+        {   centerX = x;
+            centerY = y;
+            radius = r;
+            calcArea(); }
+        
+        double getCenterX()
+        { return centerX; }
+        
+        double getCenterY()
+        { return centerY; }
+        
+        virtual void calcArea()
+        { area = 3.14159 * radius * radius; }
+};
+
+class Rectangle : public BasicShape {
+    private:
+        long int width;
+        long int length;
+    public:
+        Rectangle(long int w, long int l)
+        { width = w;
+          length = l;
+          calcArea(); }
+        
+        long int getWidth()
+        { return width; }
+        
+        long int getLength()
+        { return length; }
+        
+        virtual void calcArea()
+        { area = width * length; }
+};
+
+int main()
+{
+    double x, y, r;
+    long int w, l;
+    
+    std::cout << "Enter the circle's vertex's x coordinate: ";
+    std::cin >> x;
+    std::cout << "Enter the circle's vertex's y coordinate: ";
+    std::cin >> y;
+    std::cout << "Enter the circle's radius: ";
+    std::cin >> r;
+    
+    Circle circle(x, y, r);
+    
+    std::cout << "This is your circle's area: " << circle.getArea();
+    std::cout << std::endl;
+    
+    std::cout << "Enter the rectangle's width: ";
+    std::cin >> w;
+    
+    std::cout << "Enter the rectangle's length: ";
+    std::cin >> l;
+    
+    Rectangle rectangle(w, l);
+    
+    std::cout << "This is your rectangle's area: " << rectangle.getArea();
+
+    return 0;
+}
